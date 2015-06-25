@@ -20,7 +20,11 @@ public class ProductoBase {
     */
     
      public void insertar(String Codigo,String Nombre,int ProveedorId) {
-        Connection conect=(Connection) Principal.conexion;
+        
+        Conexion cone= new Conexion();
+        Connection conect=cone.getconexion() ;
+         
+         
         if(conect!=null){
             System.out.println("Conexion correcta");
         }

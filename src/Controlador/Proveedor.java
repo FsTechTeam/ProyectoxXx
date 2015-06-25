@@ -13,26 +13,29 @@ import java.sql.Statement;
  *
  * @author Vader33
  */
-public class Fabricante {
-         /**
+public class Proveedor {
+    
+    
+    
+            /**
     * metodo para ingresar un cliente 
     * @param Nombre
-    * @param Direccion
-    * @param Contacto
-    * @param TipoTelefono
+    * @param Alias
+    * @param Nit
+    * @param Correo
     */
-        public void insertar(String Nombre,String Direccion,String Contacto,int TipoTelefono) {
-    
+        public void insertar(String Nombre,String Alias,String Nit,int Correo) {
+       
         Conexion cone= new Conexion();
         Connection conect=cone.getconexion() ;
-            
+        
             if(conect!=null){
             System.out.println("Conexion correcta");
         }
          try
         {
             Statement statement=(Statement) conect.createStatement();                    
-            statement.execute("INSERT INTO Fabricante (Nombre,Direccion,Contacto,Tipo_Telefono_id) VALUES('"+Nombre+"','"+Direccion+"','"+Contacto+"','"+TipoTelefono+"')");             
+            statement.execute("INSERT INTO Proveedor (Nombre,Alias,NIT,Correo) VALUES('"+Nombre+"','"+Alias+"','"+Nit+"','"+Correo+"')");             
             System.out.println("Datos ingresados correctamente");          
             statement.close();
             conect.close();
@@ -42,7 +45,5 @@ public class Fabricante {
             System.out.println("Error "+ex.getMessage());
         }
       
-         
     }
-        
 }

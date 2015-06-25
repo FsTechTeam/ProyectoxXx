@@ -17,13 +17,13 @@ public class Conexion {
    public static Connection conectar = null;
     public Conexion() {
     }
-    public Connection conexion() {
+    public Connection getconexion() {
 
         try {
             String host = "192.168.10.141";
             String DB = "DBGastroClinica";
-            String user = "root";
-            String pass = "1234";
+            String user = "Daniel";
+            String pass = "Daniel14";
             Class.forName("com.mysql.jdbc.Driver");
             conectar = DriverManager.getConnection("jdbc:mysql://" + host + "/" + DB + "", user, pass);
         } catch (Exception e) {

@@ -25,8 +25,10 @@ public class Producto {
     */
     
      public void insertar(String Codigo,double PrecioCosto,double PrecioVenta,double PrecioMercado,String FechaCaducidad) {
-        Connection conect=(Connection) Principal.conexion;
-        if(conect!=null){
+      Conexion cone= new Conexion();
+        Connection conect=cone.getconexion() ;
+         
+         if(conect!=null){
             System.out.println("Conexion correcta");
         }
          try
