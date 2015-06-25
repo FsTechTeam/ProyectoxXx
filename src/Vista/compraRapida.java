@@ -42,6 +42,7 @@ public class compraRapida extends javax.swing.JFrame {
     public compraRapida() {
         initComponents();
         conexion = new Conexion();
+        llenarComboBox();
     }
 
     public void setIdProducto(Integer idProducto) {
@@ -116,6 +117,11 @@ public class compraRapida extends javax.swing.JFrame {
 
         buttonSeven1.setBackground(new java.awt.Color(255, 0, 51));
         buttonSeven1.setText("Cancelar");
+        buttonSeven1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven1ActionPerformed(evt);
+            }
+        });
 
         buttonSeven2.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven2.setText("Guardar");
@@ -165,7 +171,7 @@ public class compraRapida extends javax.swing.JFrame {
                                         .add(14, 14, 14)
                                         .add(jLabel7)))
                                 .add(354, 354, 354)))
-                        .add(0, 5, Short.MAX_VALUE))
+                        .add(0, 51, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .addContainerGap()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -182,8 +188,8 @@ public class compraRapida extends javax.swing.JFrame {
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(layout.createSequentialGroup()
                                                 .add(jLabel3)
-                                                .add(219, 219, 219)
-                                                .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                .add(187, 187, 187)
+                                                .add(jLabel4)
                                                 .add(0, 0, Short.MAX_VALUE))
                                             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                                 .add(0, 0, Short.MAX_VALUE)
@@ -192,47 +198,43 @@ public class compraRapida extends javax.swing.JFrame {
                                         .add(buttonSeven2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                                 .add(5, 5, 5))
                             .add(layout.createSequentialGroup()
-                                .add(28, 28, 28)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                    .add(layout.createSequentialGroup()
+                                    .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                                        .add(28, 28, 28)
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                            .add(jLabel9)
-                                            .add(jLabel8))
-                                        .add(18, 18, 18)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(layout.createSequentialGroup()
-                                                .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                .add(jLabel10))
-                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                                    .add(jLabel9)
+                                                    .add(jLabel8))
+                                                .add(18, 18, 18)
                                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                                    .add(jDateChooser2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 104, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                                    .add(jTextField1)
+                                                    .add(jDateChooser2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                                                    .add(jTextField2))
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                                    .add(layout.createSequentialGroup()
-                                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                        .add(jLabel11))
-                                                    .add(layout.createSequentialGroup()
-                                                        .add(33, 33, 33)
-                                                        .add(jLabel4))))))
-                                    .add(layout.createSequentialGroup()
-                                        .add(jLabel14)
-                                        .add(43, 43, 43)
-                                        .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(4, 4, 4)))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                    .add(jTextField4)
-                                    .add(jDateChooser1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .add(19, 19, 19)
+                                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel11)
+                                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel10)))
+                                            .add(layout.createSequentialGroup()
+                                                .add(jLabel14)
+                                                .add(43, 43, 43)
+                                                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                .add(4, 4, 4)))
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                            .add(jDateChooser1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                                            .add(jTextField4))))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                     .add(layout.createSequentialGroup()
+                                        .add(0, 0, Short.MAX_VALUE)
                                         .add(jLabel13)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                         .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                     .add(layout.createSequentialGroup()
                                         .add(jLabel12)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(jTextField5)))))))
                 .addContainerGap())
         );
@@ -294,6 +296,19 @@ public class compraRapida extends javax.swing.JFrame {
         jComboBox1.removeAllItems();
         jComboBox1.addItem("Si");
         jComboBox1.addItem("No");
+        idProdcutoPresentacion = 11;
+    }
+    
+    public boolean getEstaPagado(){
+        boolean pagado = false;
+        String elemento = jComboBox1.getSelectedItem().toString();
+        if(elemento.equals("Si")){
+            pagado = true;
+        }
+        if(elemento.equals("No")){
+            pagado = false;
+        }
+        return pagado;
     }
     
     private void buttonSeven2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven2ActionPerformed
@@ -307,9 +322,13 @@ public class compraRapida extends javax.swing.JFrame {
             cantidad = jTextField4.getText();
             numeroLote = jTextField5.getText();
             totalFactura = jTextField6.getText();
-            fecha = (Date) jDateChooser1.getDate();
-            limiteCredito = (Date) jDateChooser2.getDate();
-            estaPagado = Boolean.getBoolean(jComboBox1.getSelectedItem().toString());
+            
+            java.util.Date fecha1 = jDateChooser1.getDate();
+            java.util.Date limiteCredito2 = jDateChooser2.getDate();
+            fecha = new Date(fecha1.getTime());
+            limiteCredito = new Date(limiteCredito2.getTime());
+            
+            estaPagado = getEstaPagado();
 
             //Obtenemos el ID lote y creamos la Compra
             Connection connection = conexion.conexion();
@@ -327,16 +346,26 @@ public class compraRapida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonSeven2ActionPerformed
 
+    private void buttonSeven1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_buttonSeven1ActionPerformed
+
     public void crearCompra() {
         Connection connection = conexion.conexion();
         try {
             //Obtener Proveedor
             int proveedor = 0;
-
-            //Creamos nueva entrada de Compra
+            Statement statement = connection.createStatement();
+            String sql = "SELECT Prove.id, Prove.Alias from Producto_Presentacion PP inner join Lote L on PP.id= L.Producto_Presentacion_id inner join Detalle_Compra DC on L.id =DC.Lote_id inner join Compra C on DC.Compra_id = C.id inner join Proveedor Prove ON C.Proveedor_id= Prove.id inner join Producto P on PP.Producto_id = P.id inner join Presentacion Pre on PP.Presentacion_id=Pre.id where PP.id=" + idProdcutoPresentacion;
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                proveedor = rs.getInt("Prove.id");
+            }
+            //Obtener empleado
             int empleado = 1;
-
-            String sql = "INSERT into Compra (Fecha, Total, Proveedor_id, Empleado_id, Serie, Nfactura, Limite_Credito, Pagado) values(?, ?, ?, ?, ?, ?, ?, ?))";
+            //Creamos nueva entrada de Compra
+            sql = "INSERT into Compra (Fecha, Total, Proveedor_id, Empleado_id, Serie, Nfactura, Limite_Credito, Pagado) values(?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement prepstatement = connection.prepareStatement(sql);
             prepstatement.setDate(1, fecha);
             prepstatement.setDouble(2, Double.parseDouble(totalFactura));
@@ -346,14 +375,14 @@ public class compraRapida extends javax.swing.JFrame {
             prepstatement.setString(6, numeroFactura);
             prepstatement.setDate(7, limiteCredito);
             prepstatement.setBoolean(8, estaPagado);
-            prepstatement.executeQuery();
+            prepstatement.executeUpdate();
 
             //Obtenemos el id de la compra
-            Statement statement = connection.createStatement();
+            statement = connection.createStatement();
             sql = "SELECT MAX(id) FROM Compra";
-            ResultSet rs = statement.executeQuery(sql);
+            rs = statement.executeQuery(sql);
             while (rs.next()) {
-                compraId = rs.getInt("id");
+                compraId = rs.getInt("MAX(id)");
             }
             //Creamos Detalle de Compra
             crearDetalleCompra(loteId, compraId);
@@ -374,14 +403,14 @@ public class compraRapida extends javax.swing.JFrame {
                 precio_venta = rs.getDouble("Precio_Venta");
             }
             //Creamos nuevo Detalle Compra
-            sql = "INSERT into Detalle_Compra (Subtotal, Cantidad, Precio, Compra_id, Lote_id) values(?, ?, ?, ?, ?))";
+            sql = "INSERT into Detalle_Compra (Subtotal, Cantidad, Precio, Compra_id, Lote_id) values(?, ?, ?, ?, ?)";
             PreparedStatement prepstatement = connection.prepareStatement(sql);
             prepstatement.setDouble(1, Double.parseDouble(totalFactura));
             prepstatement.setInt(2, Integer.valueOf(cantidad));
             prepstatement.setDouble(3, precio_venta);
             prepstatement.setInt(4, compraId);
             prepstatement.setInt(5, loteId);
-            prepstatement.executeQuery();
+            prepstatement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Operacion Realizada con Exito");
         } catch (SQLException ex) {
             Logger.getLogger(compraRapida.class.getName()).log(Level.SEVERE, null, ex);
