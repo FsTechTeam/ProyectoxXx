@@ -19,7 +19,10 @@ public class Presentacion {
     * @param Presentacion    
     */
         public void insertar(String Presentacion) {
-        Connection conect=(Connection) Principal.conexion;
+
+        Conexion cone= new Conexion();
+        Connection conect=cone.getconexion() ;
+
         if(conect!=null){
             System.out.println("Conexion correcta");
         }
