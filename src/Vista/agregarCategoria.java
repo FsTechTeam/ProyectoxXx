@@ -101,7 +101,7 @@ public class agregarCategoria extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //este proyecto es una hermosura
+    //
     /**
      * @param args the command line arguments
      */
