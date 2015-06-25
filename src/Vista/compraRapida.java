@@ -4,6 +4,15 @@
  */
 package Vista;
 
+import Controlador.Conexion;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,16 +22,34 @@ import javax.swing.JOptionPane;
 public class compraRapida extends javax.swing.JFrame {
 
     private Integer idProdcutoPresentacion;
-    
+    private Conexion conexion;
+
+    protected String numeroFactura;
+    protected String serie;
+    protected String cantidad;
+    protected String numeroLote;
+    protected String totalFactura;
+    protected Date fecha;
+    protected Date limiteCredito;
+    protected boolean estaPagado;
+
+    private int loteId;
+    private int compraId;
+
     /**
      * Creates new form compraRapida
      */
     public compraRapida() {
         initComponents();
+        conexion = new Conexion();
     }
-    
-    public void setIdProducto(Integer idProducto){
+
+    public void setIdProducto(Integer idProducto) {
         this.idProdcutoPresentacion = idProducto;
+    }
+
+    public String getIdProducto() {
+        return String.valueOf(this.idProdcutoPresentacion);
     }
 
     /**
@@ -55,6 +82,10 @@ public class compraRapida extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -106,6 +137,14 @@ public class compraRapida extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel13.setText("Total Fact:");
 
+        jLabel3.setFont(new java.awt.Font("Century Schoolbook L", 1, 14)); // NOI18N
+        jLabel3.setText("Limite de Credito:");
+
+        jLabel4.setFont(new java.awt.Font("Century Schoolbook L", 1, 14)); // NOI18N
+        jLabel4.setText("Pagado:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,56 +163,78 @@ public class compraRapida extends javax.swing.JFrame {
                                         .add(jLabel16))
                                     .add(layout.createSequentialGroup()
                                         .add(14, 14, 14)
-                                        .add(jLabel7))
+                                        .add(jLabel7)))
+                                .add(354, 354, 354)))
+                        .add(0, 5, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
-                                        .addContainerGap()
+                                        .add(447, 447, 447)
+                                        .add(jLabel15)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(49, 49, 49))
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                                .add(layout.createSequentialGroup()
-                                                    .add(7, 7, 7)
-                                                    .add(jLabel8))
-                                                .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel9))
-                                            .add(jLabel14))
+                                            .add(layout.createSequentialGroup()
+                                                .add(jLabel3)
+                                                .add(219, 219, 219)
+                                                .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                .add(0, 0, Short.MAX_VALUE))
+                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                                .add(0, 0, Short.MAX_VALUE)
+                                                .add(buttonSeven1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                        .add(18, 18, 18)
+                                        .add(buttonSeven2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                .add(5, 5, 5))
+                            .add(layout.createSequentialGroup()
+                                .add(28, 28, 28)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                            .add(jLabel9)
+                                            .add(jLabel8))
                                         .add(18, 18, 18)
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(layout.createSequentialGroup()
-                                                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(106, 106, 106)
-                                                .add(jLabel15))
-                                            .add(layout.createSequentialGroup()
+                                                .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                                .add(jLabel10))
+                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                                    .add(jDateChooser2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 104, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                                     .add(layout.createSequentialGroup()
-                                                        .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                        .add(jLabel10))
-                                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                                        .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 104, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                        .add(jLabel11)))
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                                    .add(jTextField4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                                    .add(jDateChooser1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                        .add(19, 19, 19)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                            .add(layout.createSequentialGroup()
-                                                .add(jLabel13)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                            .add(layout.createSequentialGroup()
-                                                .add(jLabel12)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                                    .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .add(jTextField5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))))))
-                                .add(9, 9, 9)))
-                        .add(0, 0, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
-                        .add(buttonSeven1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(18, 18, 18)
-                        .add(buttonSeven2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(17, 17, 17))
+                                                        .add(jLabel11))
+                                                    .add(layout.createSequentialGroup()
+                                                        .add(33, 33, 33)
+                                                        .add(jLabel4))))))
+                                    .add(layout.createSequentialGroup()
+                                        .add(jLabel14)
+                                        .add(43, 43, 43)
+                                        .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(4, 4, 4)))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                    .add(jTextField4)
+                                    .add(jDateChooser1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(19, 19, 19)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(jLabel13)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(layout.createSequentialGroup()
+                                        .add(jLabel12)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(jTextField5)))))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -181,27 +242,25 @@ public class compraRapida extends javax.swing.JFrame {
                 .add(12, 12, 12)
                 .add(jLabel7)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jLabel16)
+                .add(12, 12, 12)
+                .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel16)
-                        .add(12, 12, 12)
-                        .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel15, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(jLabel14, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel8)
-                            .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel12)
-                            .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel10)))
-                    .add(layout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
-                        .add(jDateChooser1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel15, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel14, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(jLabel8)
+                        .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jLabel12)
+                        .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jLabel10))
+                    .add(jDateChooser1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel9)
@@ -211,10 +270,17 @@ public class compraRapida extends javax.swing.JFrame {
                     .add(jLabel13)
                     .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jDateChooser2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(jLabel4)
+                        .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(buttonSeven1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(buttonSeven2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(17, 17, 17))
+                .addContainerGap())
         );
 
         pack();
@@ -224,22 +290,104 @@ public class compraRapida extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
+    public void llenarComboBox(){
+        jComboBox1.removeAllItems();
+        jComboBox1.addItem("Si");
+        jComboBox1.addItem("No");
+    }
+    
     private void buttonSeven2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven2ActionPerformed
         // TODO add your handling code here:
-        if(jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField4.getText().isEmpty() || jTextField5.getText().isEmpty() || jTextField6.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Llenar campos");
-        }else{
-            String numeroFactura = jTextField1.getText();
-            String serie = jTextField2.getText();
-            String cantidad = jTextField4.getText();
-            String numeroLote = jTextField5.getText();
-            String totalFactura = jTextField6.getText();
-            String fecha = jDateChooser1.getDate().toString();
-            
-            
-            
+        if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField4.getText().isEmpty() || jTextField5.getText().isEmpty() || jTextField6.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, llenar todos los campos");
+        } else {
+            //Obtenemos Datos
+            numeroFactura = jTextField1.getText();
+            serie = jTextField2.getText();
+            cantidad = jTextField4.getText();
+            numeroLote = jTextField5.getText();
+            totalFactura = jTextField6.getText();
+            fecha = (Date) jDateChooser1.getDate();
+            limiteCredito = (Date) jDateChooser2.getDate();
+            estaPagado = Boolean.getBoolean(jComboBox1.getSelectedItem().toString());
+
+            //Obtenemos el ID lote y creamos la Compra
+            Connection connection = conexion.conexion();
+            try {
+                Statement statement = connection.createStatement();
+                String sql = "SELECT id FROM Lote WHERE Producto_Presentacion_id = " + getIdProducto() + "";
+                ResultSet rs = statement.executeQuery(sql);
+                while (rs.next()) {
+                    loteId = rs.getInt("id");
+                    crearCompra();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(compraRapida.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_buttonSeven2ActionPerformed
+
+    public void crearCompra() {
+        Connection connection = conexion.conexion();
+        try {
+            //Obtener Proveedor
+            int proveedor = 0;
+
+            //Creamos nueva entrada de Compra
+            int empleado = 1;
+
+            String sql = "INSERT into Compra (Fecha, Total, Proveedor_id, Empleado_id, Serie, Nfactura, Limite_Credito, Pagado) values(?, ?, ?, ?, ?, ?, ?, ?))";
+            PreparedStatement prepstatement = connection.prepareStatement(sql);
+            prepstatement.setDate(1, fecha);
+            prepstatement.setDouble(2, Double.parseDouble(totalFactura));
+            prepstatement.setInt(3, proveedor);
+            prepstatement.setInt(4, empleado);
+            prepstatement.setString(5, serie);
+            prepstatement.setString(6, numeroFactura);
+            prepstatement.setDate(7, limiteCredito);
+            prepstatement.setBoolean(8, estaPagado);
+            prepstatement.executeQuery();
+
+            //Obtenemos el id de la compra
+            Statement statement = connection.createStatement();
+            sql = "SELECT MAX(id) FROM Compra";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                compraId = rs.getInt("id");
+            }
+            //Creamos Detalle de Compra
+            crearDetalleCompra(loteId, compraId);
+        } catch (SQLException ex) {
+            Logger.getLogger(compraRapida.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void crearDetalleCompra(int idLote, int idCompra) {
+        //Obtenemos el Precio
+        Connection connection = conexion.conexion();
+        try {
+            double precio_venta = 0;
+            Statement statement = connection.createStatement();
+            String sql = "SELECT Precio_Venta FROM Producto_Presentacion WHERE id = " + getIdProducto() + "";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                precio_venta = rs.getDouble("Precio_Venta");
+            }
+            //Creamos nuevo Detalle Compra
+            sql = "INSERT into Detalle_Compra (Subtotal, Cantidad, Precio, Compra_id, Lote_id) values(?, ?, ?, ?, ?))";
+            PreparedStatement prepstatement = connection.prepareStatement(sql);
+            prepstatement.setDouble(1, Double.parseDouble(totalFactura));
+            prepstatement.setInt(2, Integer.valueOf(cantidad));
+            prepstatement.setDouble(3, precio_venta);
+            prepstatement.setInt(4, compraId);
+            prepstatement.setInt(5, loteId);
+            prepstatement.executeQuery();
+            JOptionPane.showMessageDialog(null, "Operacion Realizada con Exito");
+        } catch (SQLException ex) {
+            Logger.getLogger(compraRapida.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -278,7 +426,9 @@ public class compraRapida extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonSeven buttonSeven1;
     private org.edisoncor.gui.button.ButtonSeven buttonSeven2;
+    private javax.swing.JComboBox jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -288,6 +438,8 @@ public class compraRapida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
