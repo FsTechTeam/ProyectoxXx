@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Controlador.Presentacion;
+
 /**
  *
  * @author Geek
@@ -47,6 +49,11 @@ public class agregarPresentacion extends javax.swing.JFrame {
 
         buttonSeven2.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven2.setText("Guardar");
+        buttonSeven2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven2ActionPerformed(evt);
+            }
+        });
 
         buttonSeven1.setBackground(new java.awt.Color(255, 0, 51));
         buttonSeven1.setText("Cancelar");
@@ -100,6 +107,11 @@ public class agregarPresentacion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    Presentacion presentacion = new Presentacion();
+    private void buttonSeven2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven2ActionPerformed
+        // TODO add your handling code here:
+        presentacion.insertar(jTextField1.getText());
+    }//GEN-LAST:event_buttonSeven2ActionPerformed
 
     /**
      * @param args the command line arguments
