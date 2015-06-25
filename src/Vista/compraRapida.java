@@ -44,6 +44,11 @@ public class compraRapida extends javax.swing.JFrame {
         conexion = new Conexion();
         llenarComboBox();
     }
+    
+    public compraRapida(int idProductoPresentacion){
+        initComponents();
+        this.idProdcutoPresentacion = idProductoPresentacion;
+    }
 
     public void setIdProducto(Integer idProducto) {
         this.idProdcutoPresentacion = idProducto;
@@ -296,7 +301,6 @@ public class compraRapida extends javax.swing.JFrame {
         jComboBox1.removeAllItems();
         jComboBox1.addItem("Si");
         jComboBox1.addItem("No");
-        idProdcutoPresentacion = 11;
     }
     
     public boolean getEstaPagado(){
