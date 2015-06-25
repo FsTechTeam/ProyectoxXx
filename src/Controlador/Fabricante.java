@@ -9,17 +9,19 @@ import Vista.Principal;
 import java.sql.Connection;
 import java.sql.Statement;
 
-
-
-public class ProductoBase {
-   /** 
-  /* metodo para ingresar un cliente 
-    * @param Codigo
+/**
+ *
+ * @author Vader33
+ */
+public class Fabricante {
+         /**
+    * metodo para ingresar un cliente 
     * @param Nombre
-    * @param ProveedorId
+    * @param Direccion
+    * @param Contacto
+    * @param TipoTelefono
     */
-    
-     public void insertar(String Codigo,String Nombre,int ProveedorId) {
+        public void insertar(String Nombre,String Direccion,String Contacto,int TipoTelefono) {
         Connection conect=(Connection) Principal.conexion;
         if(conect!=null){
             System.out.println("Conexion correcta");
@@ -27,7 +29,7 @@ public class ProductoBase {
          try
         {
             Statement statement=(Statement) conect.createStatement();                    
-            statement.execute("INSERT INTO Producto (Nombre,CodigoP,Fabricante_id) VALUES('"+Nombre+"','"+Codigo+"','"+ProveedorId+"')");             
+            statement.execute("INSERT INTO Fabricante (Nombre,Direccion,Contacto,Tipo_Telefono_id) VALUES('"+Nombre+"','"+Direccion+"','"+Contacto+"','"+TipoTelefono+"')");             
             System.out.println("Datos ingresados correctamente");          
             statement.close();
             conect.close();
@@ -38,5 +40,4 @@ public class ProductoBase {
         }
       
     }
-    
 }
