@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author Geek
  */
+//merge
 public class Conexion {
     
    public static Connection conectar = null;

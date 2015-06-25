@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Controlador.Conexion;
+
 /**
  *
  * @author Geek
@@ -13,6 +15,7 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    public static Conexion conexion = new Conexion();
     public Principal() {
         initComponents();
     }
