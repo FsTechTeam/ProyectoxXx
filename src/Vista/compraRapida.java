@@ -45,6 +45,8 @@ public class compraRapida extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -91,6 +93,10 @@ public class compraRapida extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel13.setText("Total Fact:");
 
+        jLabel1.setText("jLabel1");
+
+        jLabel2.setText("jLabel2");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,7 +121,9 @@ public class compraRapida extends javax.swing.JFrame {
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(layout.createSequentialGroup()
                                                 .add(jLabel14)
-                                                .add(278, 278, 278)
+                                                .add(112, 112, 112)
+                                                .add(jLabel1)
+                                                .add(121, 121, 121)
                                                 .add(jLabel15))
                                             .add(layout.createSequentialGroup()
                                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -137,16 +145,21 @@ public class compraRapida extends javax.swing.JFrame {
                                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                                     .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                                     .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                                        .add(12, 12, 12)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(layout.createSequentialGroup()
-                                                .add(jLabel13)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                                .add(12, 12, 12)
+                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                                    .add(layout.createSequentialGroup()
+                                                        .add(jLabel13)
+                                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                                        .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                                    .add(layout.createSequentialGroup()
+                                                        .add(jLabel12)
+                                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                                        .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                                             .add(layout.createSequentialGroup()
-                                                .add(jLabel12)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                                .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
+                                                .add(101, 101, 101)
+                                                .add(jLabel2)))))
                                 .add(9, 9, 9)))
                         .add(0, 0, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
@@ -167,8 +180,12 @@ public class compraRapida extends javax.swing.JFrame {
                 .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel15)
-                    .add(jLabel14))
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(jLabel15)
+                        .add(jLabel2))
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(jLabel14)
+                        .add(jLabel1)))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel8)
@@ -236,6 +253,7 @@ public class compraRapida extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonSeven buttonSeven1;
     private org.edisoncor.gui.button.ButtonSeven buttonSeven2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -243,6 +261,7 @@ public class compraRapida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
