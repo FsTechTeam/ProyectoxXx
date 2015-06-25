@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Controlador.ProductoBase;
+
 /**
  *
  * @author Geek
@@ -15,6 +17,8 @@ public class agregarProductoBase extends javax.swing.JFrame {
      */
     public agregarProductoBase() {
         initComponents();
+                this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
     }
 
     /**
@@ -55,6 +59,11 @@ public class agregarProductoBase extends javax.swing.JFrame {
 
         buttonSeven2.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven2.setText("Guardar");
+        buttonSeven2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven2ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel9.setText("Nombre:");
@@ -67,6 +76,11 @@ public class agregarProductoBase extends javax.swing.JFrame {
         buttonSeven5.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven5.setText("+ Fabricante");
         buttonSeven5.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        buttonSeven5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven5ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,6 +151,23 @@ public class agregarProductoBase extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    ProductoBase producto= new ProductoBase();
+    private void buttonSeven2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven2ActionPerformed
+        // TODO add your handling code here:
+        String Codigo=jTextField1.getText();
+        String NombreC=jTextField2.getSelectedText();
+        int selectProveedores=jComboBox4.getSelectedIndex();
+        
+        producto.insertar(Codigo, NombreC, selectProveedores);
+        
+    }//GEN-LAST:event_buttonSeven2ActionPerformed
+
+    private void buttonSeven5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven5ActionPerformed
+        // TODO add your handling code here:
+        
+        agregarFabricante ventana= new agregarFabricante();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_buttonSeven5ActionPerformed
 
     /**
      * @param args the command line arguments

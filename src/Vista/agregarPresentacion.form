@@ -114,6 +114,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSeven2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="org.edisoncor.gui.button.ButtonSeven" name="buttonSeven1">
       <Properties>

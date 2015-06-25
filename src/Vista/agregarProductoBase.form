@@ -148,6 +148,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSeven2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
@@ -189,6 +192,9 @@
           <Font name="Century Gothic" size="10" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSeven5ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
