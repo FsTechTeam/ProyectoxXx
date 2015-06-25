@@ -335,7 +335,7 @@ public class compraRapida extends javax.swing.JFrame {
             estaPagado = getEstaPagado();
 
             //Obtenemos el ID lote y creamos la Compra
-            Connection connection = conexion.conexion();
+            Connection connection = conexion.getconexion();
             try {
                 Statement statement = connection.createStatement();
                 String sql = "SELECT id FROM Lote WHERE Producto_Presentacion_id = " + getIdProducto() + "";
@@ -356,7 +356,7 @@ public class compraRapida extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonSeven1ActionPerformed
 
     public void crearCompra() {
-        Connection connection = conexion.conexion();
+        Connection connection = conexion.getconexion();
         try {
             //Obtener Proveedor
             int proveedor = 0;
@@ -397,7 +397,7 @@ public class compraRapida extends javax.swing.JFrame {
 
     public void crearDetalleCompra(int idLote, int idCompra) {
         //Obtenemos el Precio
-        Connection connection = conexion.conexion();
+        Connection connection = conexion.getconexion();
         try {
             double precio_venta = 0;
             Statement statement = connection.createStatement();

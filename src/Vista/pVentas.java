@@ -70,6 +70,9 @@ public class pVentas extends javax.swing.JPanel {
         jSeparator6 = new javax.swing.JSeparator();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        buttonSeven3 = new org.edisoncor.gui.button.ButtonSeven();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1002, 734));
         setMinimumSize(new java.awt.Dimension(1002, 734));
@@ -269,6 +272,14 @@ public class pVentas extends javax.swing.JPanel {
         jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel22.setText("Nueva Venta");
 
+        buttonSeven3.setBackground(new java.awt.Color(0, 204, 0));
+        buttonSeven3.setText("+ Agregar cliente nuevo");
+        buttonSeven3.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+
+        jTextField2.setText("2406001");
+
+        jLabel23.setText("06/06/2015");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -282,7 +293,7 @@ public class pVentas extends javax.swing.JPanel {
                         .add(jSeparator3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 205, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(panelNice1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 218, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
@@ -319,40 +330,54 @@ public class pVentas extends javax.swing.JPanel {
                 .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(6, 6, 6)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel1)
                             .add(layout.createSequentialGroup()
                                 .add(6, 6, 6)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel9)
-                                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jLabel8)
-                                    .add(jLabel10)
+                                    .add(jLabel1)
                                     .add(layout.createSequentialGroup()
                                         .add(6, 6, 6)
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                            .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .add(jLabel11)
-                                            .add(jLabel12))))))
-                        .add(0, 0, Short.MAX_VALUE))
-                    .add(layout.createSequentialGroup()
-                        .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jSeparator5)
+                                            .add(jLabel9)
+                                            .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(jLabel8)
+                                            .add(layout.createSequentialGroup()
+                                                .add(6, 6, 6)
+                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                                    .add(buttonSeven3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                                    .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))))
                             .add(layout.createSequentialGroup()
+                                .add(18, 18, 18)
+                                .add(buttonTransluceIcon2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 63, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(18, 18, 18)
+                                .add(buttonTransluceIcon1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 63, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .add(layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel10)
+                            .add(layout.createSequentialGroup()
+                                .add(6, 6, 6)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jCheckBox1)
-                                    .add(jLabel13)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jSeparator5)
                                     .add(layout.createSequentialGroup()
-                                        .add(6, 6, 6)
-                                        .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                    .add(layout.createSequentialGroup()
-                                        .add(buttonTransluceIcon2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 63, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(18, 18, 18)
-                                        .add(buttonTransluceIcon1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 63, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                                .add(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(layout.createSequentialGroup()
+                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                                    .add(jLabel11)
+                                                    .add(jLabel12))
+                                                .add(18, 18, 18)
+                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                    .add(layout.createSequentialGroup()
+                                                        .add(6, 6, 6)
+                                                        .add(jLabel23))))
+                                            .add(jCheckBox1)
+                                            .add(jLabel13)
+                                            .add(layout.createSequentialGroup()
+                                                .add(6, 6, 6)
+                                                .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 155, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                        .addContainerGap())))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -367,15 +392,21 @@ public class pVentas extends javax.swing.JPanel {
                 .add(jLabel9)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(18, 18, 18)
+                .add(buttonSeven3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(16, 16, 16)
                 .add(jSeparator5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jLabel11)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel11)
+                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel12)
+                    .add(jLabel23))
                 .add(18, 18, 18)
-                .add(jLabel12)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jCheckBox1)
                 .add(18, 18, 18)
                 .add(jLabel13)
@@ -436,6 +467,7 @@ public class pVentas extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.edisoncor.gui.button.ButtonSeven buttonSeven3;
     private org.edisoncor.gui.button.ButtonTransluceIcon buttonTransluceIcon1;
     private org.edisoncor.gui.button.ButtonTransluceIcon buttonTransluceIcon2;
     private javax.swing.JButton jButton1;
@@ -456,6 +488,7 @@ public class pVentas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -475,6 +508,7 @@ public class pVentas extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private org.edisoncor.gui.panel.PanelCurves panelCurves1;
