@@ -13,30 +13,25 @@ import java.sql.Statement;
  *
  * @author Vader33
  */
-public class Producto {
-    
-       /**
+public class Contacto {
+            /**
     * metodo para ingresar un cliente 
-    * @param Codigo
-    * @param PrecioCosto
-    * @param PrecioVenta
-    * @param PrecioMercado
-    * @param FechaCaducidad
+    * @param Nombre
+    * @param Direccion
+    * @param TipoTelefono
     */
-    
-     public void insertar(String Codigo,double PrecioCosto,double PrecioVenta,double PrecioMercado,String FechaCaducidad) {
-
-      Conexion cone= new Conexion();
+        public void insertar(String Nombre,String Direccion,int TipoTelefono) {
+ 
+        Conexion cone= new Conexion();
         Connection conect=cone.getconexion() ;
-         
-         if(conect!=null){
-
+        
+            if(conect!=null){
             System.out.println("Conexion correcta");
         }
          try
         {
             Statement statement=(Statement) conect.createStatement();                    
-            //statement.execute("INSERT INTO Clientes(Nombre,Nit,Direccion) VALUES('"+nombre+"','"+Nit+"','"+Direccion+"')");             
+            statement.execute("INSERT INTO Contacto (Numero,Direccion,Proveedor_id,Tipo_Telefono_id) VALUES('"+Nombre+"','"+Direccion+"',Select MAX(id) from Proveedor,'"+TipoTelefono+"')");             
             System.out.println("Datos ingresados correctamente");          
             statement.close();
             conect.close();
@@ -47,5 +42,4 @@ public class Producto {
         }
       
     }
-    
 }

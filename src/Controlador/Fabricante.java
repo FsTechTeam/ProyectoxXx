@@ -22,8 +22,12 @@ public class Fabricante {
     * @param TipoTelefono
     */
         public void insertar(String Nombre,String Direccion,String Contacto,int TipoTelefono) {
-        Connection conect=(Connection) Principal.conexion;
-        if(conect!=null){
+
+    
+        Conexion cone= new Conexion();
+        Connection conect=cone.getconexion() ;
+            
+            if(conect!=null){
             System.out.println("Conexion correcta");
         }
          try
@@ -39,5 +43,8 @@ public class Fabricante {
             System.out.println("Error "+ex.getMessage());
         }
       
+         
     }
+        
+
 }
