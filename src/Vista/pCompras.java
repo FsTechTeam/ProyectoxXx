@@ -4,6 +4,12 @@
  */
 package Vista;
 
+import Controlador.Conexion;
+import java.net.ConnectException;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Geek
@@ -13,9 +19,41 @@ public class pCompras extends javax.swing.JPanel {
     /**
      * Creates new form pCompras
      */
+    String[]datos = new String [6];
+    Conexion cone= new Conexion();
+    
     public pCompras() {
         initComponents();
     }
+    
+//      void mostrarDatos(String texto){
+//        DefaultTableModel modelo = new DefaultTableModel();
+//        modelo.addColumn("ID");
+//        modelo.addColumn("NOMBRE");
+//        modelo.addColumn("FABRICANTE");
+//        modelo.addColumn("PRESENTACION");
+//        modelo.addColumn("PRECIO");
+//        modelo.addColumn("EXISTENCIA");
+//        tbCompras.setModel(modelo);
+//        try{
+//            Statement st = conexion.createStatement();
+//            ResultSet rs = st.executeQuery("select P.id, P.Nombre, P.Fabricante , Pr.Presentacion, PP.Precio_Venta , PP.Existencia_Total from Producto P inner join Producto_Presentacion PP on  P.id = PP.Producto_id inner join Presentacion Pr on PP.Presentacion_id = Pr.id where P.Nombre like '%"+texto+"%'"); 
+//           while(rs.next()){
+//                datos[1] =rs.getString(2);
+//                datos[2] =rs.getString(3);
+//                datos[3] =rs.getString(4);
+//                datos[4] =rs.getString(5);
+//                datos[5] =rs.getString(6);
+//                datos[0] =rs.getString(1);
+//                modelo.addRow(datos);
+//            }
+//            tbCompras.setModel(modelo);
+//            tbCompras.getColumnModel().getColumn(0).setMaxWidth(0);
+//            tbCompras.getColumnModel().getColumn(0).setMinWidth(0);
+//        }catch(Exception e){
+//        
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,9 +66,9 @@ public class pCompras extends javax.swing.JPanel {
 
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        principalFecha = new javax.swing.JTextField();
+        textCompras = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbCompras = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -74,7 +112,13 @@ public class pCompras extends javax.swing.JPanel {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        textCompras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textComprasKeyPressed(evt);
+            }
+        });
+
+        tbCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -85,7 +129,7 @@ public class pCompras extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbCompras);
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Otras opciones:");
@@ -302,7 +346,7 @@ public class pCompras extends javax.swing.JPanel {
                                     .add(jLabel14)))
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(principalFecha, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                                    .add(textCompras, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                                     .add(jLabel7))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -360,7 +404,7 @@ public class pCompras extends javax.swing.JPanel {
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                     .add(layout.createSequentialGroup()
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                            .add(principalFecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 38, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(textCompras, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 38, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                             .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 299, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -397,6 +441,13 @@ public class pCompras extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void textComprasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textComprasKeyPressed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_textComprasKeyPressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonSeven buttonSeven2;
     private org.edisoncor.gui.button.ButtonSeven buttonSeven3;
@@ -433,10 +484,10 @@ public class pCompras extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private org.edisoncor.gui.panel.PanelCurves panelCurves1;
     private org.edisoncor.gui.panel.PanelNice panelNice1;
-    private javax.swing.JTextField principalFecha;
+    private javax.swing.JTable tbCompras;
+    private javax.swing.JTextField textCompras;
     // End of variables declaration//GEN-END:variables
 }
