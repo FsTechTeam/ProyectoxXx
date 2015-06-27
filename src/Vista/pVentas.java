@@ -26,6 +26,7 @@ public class pVentas extends javax.swing.JPanel {
      */
     public pVentas() {
         initComponents();
+        llenarCombobox();
     }
 
     /**
@@ -513,6 +514,13 @@ public class pVentas extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void llenarCombobox(){
+        jComboBox1.removeAll();
+        jComboBox1.addItem("Producto");
+        jComboBox1.addItem("Proveedor");
+        jComboBox1.addItem("Presentacion");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonSeven buttonSeven3;
     private org.edisoncor.gui.button.ButtonTransluceIcon buttonTransluceIcon1;
