@@ -174,6 +174,11 @@ public class pVentas extends javax.swing.JPanel {
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/ventas.png"))); // NOI18N
         jLabel19.setText("Ventas");
+        jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel19MouseClicked(evt);
+            }
+        });
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/logotitulo.png"))); // NOI18N
 
@@ -465,6 +470,11 @@ public class pVentas extends javax.swing.JPanel {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jLabel19MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonSeven buttonSeven3;

@@ -5,6 +5,7 @@
 package Vista;
 
 import Controlador.Conexion;
+import java.awt.BorderLayout;
 
 /**
  *
@@ -18,6 +19,7 @@ public class Principal extends javax.swing.JFrame {
     public static Conexion conexion = new Conexion();
     public Principal() {
         initComponents();
+        
     }
 
     /**
@@ -29,9 +31,9 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pPrincipal = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,20 +41,16 @@ public class Principal extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1024, 768));
         setSize(new java.awt.Dimension(1024, 768));
 
-        pPrincipal.setBackground(new java.awt.Color(255, 255, 255));
-
-        org.jdesktop.layout.GroupLayout pPrincipalLayout = new org.jdesktop.layout.GroupLayout(pPrincipal);
-        pPrincipal.setLayout(pPrincipalLayout);
-        pPrincipalLayout.setHorizontalGroup(
-            pPrincipalLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 1002, Short.MAX_VALUE)
-        );
-        pPrincipalLayout.setVerticalGroup(
-            pPrincipalLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 734, Short.MAX_VALUE)
-        );
-
         jMenu1.setText("File");
+
+        jMenuItem1.setText("Compras");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -64,21 +62,20 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(pPrincipal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(0, 1014, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(pPrincipal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(0, 746, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,6 +108,8 @@ public class Principal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Principal().setVisible(true);
+                
+               
             }
         });
     }
@@ -118,6 +117,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel pPrincipal;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

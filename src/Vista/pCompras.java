@@ -4,6 +4,13 @@
  */
 package Vista;
 
+import Controlador.Conexion;
+import java.net.ConnectException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Geek
@@ -13,8 +20,41 @@ public class pCompras extends javax.swing.JPanel {
     /**
      * Creates new form pCompras
      */
+    String[]datos = new String [6];
+    Conexion cone= new Conexion();
+    Connection conexion = cone.getconexion();
+    
     public pCompras() {
         initComponents();
+    }
+    
+      void mostrarDatos(String texto){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("CODIGO");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("PRESENTACION");
+        modelo.addColumn("PRECIO");
+        modelo.addColumn("CASA MEDICA");
+        modelo.addColumn("EXISTENCIA");
+        tbCompra.setModel(modelo);
+        try{
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery("select Pro.CodigoP, Pro.Nombre, P.Presentacion as 'Presentacion', Precio_Venta, Prove.Alias as'Proveedor', PP.Existencia_Total from Producto_Presentacion PP inner join Presentacion P on PP.Presentacion_id =P.id inner join Producto Pro on PP.Producto_id=P.id inner join Lote L on PP.id=L.Producto_Presentacion_id inner join Detalle_Compra DC on L.id = DC.Lote_id inner join Compra C on C.id= DC.Compra_id inner join Proveedor Prove on C.Proveedor_id = Prove.id group by Pro.id where Pro.Nombre like '%"+texto+"%'"); 
+           while(rs.next()){
+                datos[1] =rs.getString(2);
+                datos[2] =rs.getString(3);
+                datos[3] =rs.getString(4);
+                datos[4] =rs.getString(5);
+                datos[5] =rs.getString(6);
+                datos[0] =rs.getString(1);
+                modelo.addRow(datos);
+            }
+            tbCompra.setModel(modelo);
+            tbCompra.getColumnModel().getColumn(0).setMaxWidth(0);
+            tbCompra.getColumnModel().getColumn(0).setMinWidth(0);
+        }catch(Exception e){
+        
+        }
     }
 
     /**
@@ -28,9 +68,9 @@ public class pCompras extends javax.swing.JPanel {
 
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        principalFecha = new javax.swing.JTextField();
+        txtCompra = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbCompra = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -66,6 +106,15 @@ public class pCompras extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        buttonSeven6 = new org.edisoncor.gui.button.ButtonSeven();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(1002, 734));
         setMinimumSize(new java.awt.Dimension(1002, 734));
@@ -74,7 +123,13 @@ public class pCompras extends javax.swing.JPanel {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        txtCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCompraKeyPressed(evt);
+            }
+        });
+
+        tbCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -85,7 +140,7 @@ public class pCompras extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbCompra);
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Otras opciones:");
@@ -260,6 +315,27 @@ public class pCompras extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel8.setText("Compra:");
 
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel9.setText("No. Factura:");
+
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel10.setText("Serie:");
+
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel11.setText("Fecha:");
+
+        buttonSeven6.setBackground(new java.awt.Color(102, 102, 255));
+        buttonSeven6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/agregar.png"))); // NOI18N
+        buttonSeven6.setText("Editar producto");
+        buttonSeven6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven6ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel12.setText("Total esta factura:");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -296,13 +372,13 @@ public class pCompras extends javax.swing.JPanel {
                                 .add(6, 6, 6)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
-                                        .add(jScrollPane2)
+                                        .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                     .add(jLabel14)))
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(principalFecha, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                                    .add(txtCompra)
                                     .add(jLabel7))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -310,24 +386,61 @@ public class pCompras extends javax.swing.JPanel {
                                     .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 158, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                            .add(org.jdesktop.layout.GroupLayout.LEADING, buttonSeven3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(org.jdesktop.layout.GroupLayout.LEADING, buttonSeven2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(org.jdesktop.layout.GroupLayout.LEADING, buttonSeven4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel8)
+                                            .add(buttonSeven5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(org.jdesktop.layout.GroupLayout.LEADING, jSeparator5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                                            .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                                                .add(17, 17, 17)
+                                                .add(buttonTransluceIcon2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 63, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                .add(18, 18, 18)
+                                                .add(buttonTransluceIcon1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 63, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                        .add(19, 19, 19))
+                                    .add(layout.createSequentialGroup()
+                                        .add(buttonSeven6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .add(layout.createSequentialGroup()
+                                .add(4, 4, 4)
+                                .add(jLabel9)
+                                .add(0, 0, Short.MAX_VALUE))
+                            .add(layout.createSequentialGroup()
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jLabel1)
+                                .addContainerGap())
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel1)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, buttonSeven3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, buttonSeven2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, buttonSeven4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel8)
-                                    .add(buttonSeven5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jSeparator5)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                                        .add(17, 17, 17)
-                                        .add(buttonTransluceIcon2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 63, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(18, 18, 18)
-                                        .add(buttonTransluceIcon1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 63, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                                .add(19, 19, 19))
-                            .add(jSeparator7)))))
+                                    .add(layout.createSequentialGroup()
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 139, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(35, 35, 35))
+                                    .add(layout.createSequentialGroup()
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(layout.createSequentialGroup()
+                                                .add(jLabel12)
+                                                .add(0, 0, Short.MAX_VALUE))
+                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                                .add(0, 0, Short.MAX_VALUE)
+                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                                    .add(layout.createSequentialGroup()
+                                                        .add(jLabel10)
+                                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                                        .add(jTextField2))
+                                                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 188, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                                .add(jLabel11)
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                                .add(jTextField3))
+                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jSeparator7))))
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -350,7 +463,7 @@ public class pCompras extends javax.swing.JPanel {
                         .add(jLabel22)
                         .add(12, 12, 12)
                         .add(jSeparator6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                     .add(jLabel7)
@@ -360,7 +473,7 @@ public class pCompras extends javax.swing.JPanel {
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                     .add(layout.createSequentialGroup()
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                            .add(principalFecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 38, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(txtCompra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 38, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                             .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 299, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -374,20 +487,38 @@ public class pCompras extends javax.swing.JPanel {
                                             .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                         .add(18, 18, 18))
                                     .add(jSeparator2)))
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                            .add(layout.createSequentialGroup()
+                                .add(36, 36, 36)
+                                .add(jLabel9)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jLabel10)
+                                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jLabel11)
+                                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(jLabel12)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 48, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .add(jSeparator7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(14, 14, 14)
-                                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(jLabel1)
                                 .add(18, 18, 18)
+                                .add(buttonSeven6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(buttonSeven2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(buttonSeven3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(buttonSeven4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(buttonSeven5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(18, 18, 18)
+                                .add(24, 24, 24)
                                 .add(jSeparator5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -397,16 +528,36 @@ public class pCompras extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void textComprasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textComprasKeyPressed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_textComprasKeyPressed
+
+    private void txtCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCompraKeyPressed
+        // TODO add your handling code here:
+        mostrarDatos(txtCompra.getText());
+    }//GEN-LAST:event_txtCompraKeyPressed
+
+    private void buttonSeven6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSeven6ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonSeven buttonSeven2;
     private org.edisoncor.gui.button.ButtonSeven buttonSeven3;
     private org.edisoncor.gui.button.ButtonSeven buttonSeven4;
     private org.edisoncor.gui.button.ButtonSeven buttonSeven5;
+    private org.edisoncor.gui.button.ButtonSeven buttonSeven6;
     private org.edisoncor.gui.button.ButtonTransluceIcon buttonTransluceIcon1;
     private org.edisoncor.gui.button.ButtonTransluceIcon buttonTransluceIcon2;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -423,6 +574,7 @@ public class pCompras extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -433,10 +585,14 @@ public class pCompras extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private org.edisoncor.gui.panel.PanelCurves panelCurves1;
     private org.edisoncor.gui.panel.PanelNice panelNice1;
-    private javax.swing.JTextField principalFecha;
+    private javax.swing.JTable tbCompra;
+    private javax.swing.JTextField txtCompra;
     // End of variables declaration//GEN-END:variables
 }
