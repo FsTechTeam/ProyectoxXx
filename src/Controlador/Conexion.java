@@ -24,8 +24,8 @@ public class Conexion {
         try {
             String host = "192.168.10.141";
             String DB = "ProyectoBDF";
-            String user = "Daniel";
-            String pass = "Daniel14";
+            String user = "Daniel1";
+            String pass = "12345";
             Class.forName("com.mysql.jdbc.Driver");
             conectar = DriverManager.getConnection("jdbc:mysql://" + host + "/" + DB + "", user, pass);
         } catch (Exception e) {

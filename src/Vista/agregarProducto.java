@@ -303,6 +303,8 @@ public class agregarProducto extends javax.swing.JFrame {
     private void buttonSeven5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven5ActionPerformed
         // TODO add your handling code here:
         agregarFabricante nueva= new agregarFabricante();
+        nueva.setVisible(true);
+       
     }//GEN-LAST:event_buttonSeven5ActionPerformed
 
     /**
