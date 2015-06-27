@@ -83,10 +83,20 @@ public class agregarProducto extends javax.swing.JFrame {
         buttonSeven2.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven2.setText("+ Presentación");
         buttonSeven2.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        buttonSeven2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven2ActionPerformed(evt);
+            }
+        });
 
         buttonSeven3.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven3.setText("+ Categoria");
         buttonSeven3.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        buttonSeven3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven3ActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel12.setText("Proveedor");
@@ -96,10 +106,20 @@ public class agregarProducto extends javax.swing.JFrame {
         buttonSeven4.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven4.setText("+ Proveedor");
         buttonSeven4.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        buttonSeven4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven4ActionPerformed(evt);
+            }
+        });
 
         buttonSeven5.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven5.setText("+ Fabricante");
         buttonSeven5.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        buttonSeven5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven5ActionPerformed(evt);
+            }
+        });
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -260,6 +280,30 @@ public class agregarProducto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonSeven2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven2ActionPerformed
+        // TODO add your handling code here:
+        agregarPresentacion nueva = new agregarPresentacion();
+        nueva.setVisible(true);
+        
+    }//GEN-LAST:event_buttonSeven2ActionPerformed
+
+    private void buttonSeven3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven3ActionPerformed
+        // TODO add your handling code here:
+        agregarCategoria nueva = new agregarCategoria();
+        nueva.setVisible(true);
+    }//GEN-LAST:event_buttonSeven3ActionPerformed
+
+    private void buttonSeven4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven4ActionPerformed
+        // TODO add your handling code here:
+        agregarProveedor nueva = new agregarProveedor();
+        nueva.setVisible(true);
+    }//GEN-LAST:event_buttonSeven4ActionPerformed
+
+    private void buttonSeven5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven5ActionPerformed
+        // TODO add your handling code here:
+        agregarFabricante nueva= new agregarFabricante();
+    }//GEN-LAST:event_buttonSeven5ActionPerformed
 
     /**
      * @param args the command line arguments

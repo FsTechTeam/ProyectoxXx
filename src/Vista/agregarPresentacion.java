@@ -17,6 +17,7 @@ public class agregarPresentacion extends javax.swing.JFrame {
      */
     public agregarPresentacion() {
         initComponents();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**

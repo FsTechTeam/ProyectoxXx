@@ -4,6 +4,11 @@
  */
 package Vista;
 
+import Controlador.Proveedor;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Geek
@@ -15,6 +20,8 @@ public class agregarProveedor extends javax.swing.JFrame {
      */
     public agregarProveedor() {
         initComponents();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        jComboBox1.setModel(new DefaultComboBoxModel(tipos));
     }
 
     /**
@@ -38,7 +45,7 @@ public class agregarProveedor extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla = new javax.swing.JTable();
         jTextField4 = new javax.swing.JTextField();
         buttonSeven1 = new org.edisoncor.gui.button.ButtonSeven();
         buttonSeven2 = new org.edisoncor.gui.button.ButtonSeven();
@@ -69,30 +76,37 @@ public class agregarProveedor extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel18.setText("Contacto:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Numero", "Tipo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabla);
 
         buttonSeven1.setBackground(new java.awt.Color(255, 0, 51));
         buttonSeven1.setText("Cancelar");
 
         buttonSeven2.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven2.setText("Guardar");
+        buttonSeven2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven2ActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         buttonSeven3.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven3.setText("+");
         buttonSeven3.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        buttonSeven3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven3ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,6 +196,25 @@ public class agregarProveedor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    String [] tipos= {"Fijo","Celular"};
+    private void buttonSeven3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven3ActionPerformed
+        // TODO add your handling code here
+     DefaultTableModel modelo = (DefaultTableModel)Tabla.getModel() ;
+    
+        Object[] objeto = new Object[2];
+        objeto[0]=jTextField7.getText();
+        objeto[1]=(String)jComboBox1.getSelectedItem();
+        modelo.addRow(objeto);
+       Tabla.setModel(modelo);
+       jTextField7.setText(null);
+    }//GEN-LAST:event_buttonSeven3ActionPerformed
+
+    private void buttonSeven2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven2ActionPerformed
+        // TODO add your handling code here:
+        Proveedor nuevo = new Proveedor();
+        nuevo.insertar(jTextField4.getText(), jTextField3.getText(), jTextField5.getText(), jTextField6.getText());
+        
+    }//GEN-LAST:event_buttonSeven2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +251,7 @@ public class agregarProveedor extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Tabla;
     private org.edisoncor.gui.button.ButtonSeven buttonSeven1;
     private org.edisoncor.gui.button.ButtonSeven buttonSeven2;
     private org.edisoncor.gui.button.ButtonSeven buttonSeven3;
@@ -231,7 +265,6 @@ public class agregarProveedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

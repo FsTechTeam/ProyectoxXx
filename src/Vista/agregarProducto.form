@@ -278,6 +278,9 @@
           <Font name="Century Gothic" size="10" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSeven2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="org.edisoncor.gui.button.ButtonSeven" name="buttonSeven3">
       <Properties>
@@ -289,6 +292,9 @@
           <Font name="Century Gothic" size="10" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSeven3ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
@@ -320,6 +326,9 @@
           <Font name="Century Gothic" size="10" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSeven4ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="org.edisoncor.gui.button.ButtonSeven" name="buttonSeven5">
       <Properties>
@@ -331,6 +340,9 @@
           <Font name="Century Gothic" size="10" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSeven5ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox4">
       <Properties>

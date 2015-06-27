@@ -24,7 +24,7 @@ public class Proveedor {
     * @param Nit
     * @param Correo
     */
-        public void insertar(String Nombre,String Alias,String Nit,int Correo) {
+        public void insertar(String Nombre,String Alias,String Nit,String Correo) {
        
         Conexion cone= new Conexion();
         Connection conect=cone.getconexion() ;
