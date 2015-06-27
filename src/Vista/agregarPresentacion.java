@@ -5,6 +5,7 @@
 package Vista;
 
 import Controlador.Presentacion;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,6 +59,11 @@ public class agregarPresentacion extends javax.swing.JFrame {
 
         buttonSeven1.setBackground(new java.awt.Color(255, 0, 51));
         buttonSeven1.setText("Cancelar");
+        buttonSeven1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven1ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,8 +117,18 @@ public class agregarPresentacion extends javax.swing.JFrame {
     Presentacion presentacion = new Presentacion();
     private void buttonSeven2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven2ActionPerformed
         // TODO add your handling code here:
-        presentacion.insertar(jTextField1.getText());
+        if("".equals(jTextField1.getText())){
+            JOptionPane.showMessageDialog(this, "Ingrese Una Presentacion");
+        } else {
+            presentacion.insertar(jTextField1.getText());
+            jTextField1.setText(null);
+        }
     }//GEN-LAST:event_buttonSeven2ActionPerformed
+
+    private void buttonSeven1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_buttonSeven1ActionPerformed
 
     /**
      * @param args the command line arguments
