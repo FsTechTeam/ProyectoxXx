@@ -23,7 +23,7 @@ public class Conexion {
 
         try {
             String host = "192.168.10.141";
-            String DB = "DBGastroClinica";
+            String DB = "ProyectoBDF";
             String user = "Daniel";
             String pass = "Daniel14";
             Class.forName("com.mysql.jdbc.Driver");

@@ -16,11 +16,11 @@ import java.sql.Statement;
 public class Contacto {
             /**
     * metodo para ingresar un cliente 
-    * @param Nombre
+    * @param Numero
     * @param Direccion
     * @param TipoTelefono
     */
-        public void insertar(String Nombre,String Direccion,int TipoTelefono) {
+        public void insertar(String Numero,String Direccion,int TipoTelefono) {
  
         Conexion cone= new Conexion();
         Connection conect=cone.getconexion() ;
@@ -31,7 +31,7 @@ public class Contacto {
          try
         {
             Statement statement=(Statement) conect.createStatement();                    
-            statement.execute("INSERT INTO Contacto (Numero,Direccion,Proveedor_id,Tipo_Telefono_id) VALUES('"+Nombre+"','"+Direccion+"',Select MAX(id+1) from Proveedor,'"+TipoTelefono+"')");             
+            statement.execute("INSERT INTO Contacto (Numero,Direccion,Proveedor_id,Tipo_Telefono_id) VALUES('"+Numero+"','"+Direccion+"',Select MAX(id) from Proveedor,'"+TipoTelefono+"')");             
             System.out.println("Datos ingresados correctamente");          
             statement.close();
             conect.close();
