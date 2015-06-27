@@ -118,7 +118,7 @@ public class agregarPresentacion extends javax.swing.JFrame {
     private void buttonSeven2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven2ActionPerformed
         // TODO add your handling code here:
         if("".equals(jTextField1.getText())){
-            JOptionPane.showMessageDialog(this, "Ingrese Una Presentacion");
+            JOptionPane.showMessageDialog(this, "Ingrese Una Presentacion","Advertencia",JOptionPane.WARNING_MESSAGE);
         } else {
             presentacion.insertar(jTextField1.getText());
             jTextField1.setText(null);
