@@ -48,6 +48,7 @@ public class pCompras extends javax.swing.JPanel {
                 datos[5] =rs.getString(6);
                 datos[0] =rs.getString(1);
                 modelo.addRow(datos);
+                System.out.println(datos);
             }
             tbCompra.setModel(modelo);
             tbCompra.getColumnModel().getColumn(0).setMaxWidth(0);
