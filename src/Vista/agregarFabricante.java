@@ -5,6 +5,8 @@
 package Vista;
 
 import Controlador.Fabricante;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +20,7 @@ public class agregarFabricante extends javax.swing.JFrame {
     public agregarFabricante() {
         initComponents();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+        jComboBox1.setModel(new DefaultComboBoxModel(tipos) );
     }
 
     /**
@@ -44,6 +46,11 @@ public class agregarFabricante extends javax.swing.JFrame {
         buttonSeven2 = new org.edisoncor.gui.button.ButtonSeven();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel7.setText("Agregar Fabricante");
@@ -64,6 +71,11 @@ public class agregarFabricante extends javax.swing.JFrame {
 
         buttonSeven1.setBackground(new java.awt.Color(255, 0, 51));
         buttonSeven1.setText("Cancelar");
+        buttonSeven1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven1ActionPerformed(evt);
+            }
+        });
 
         buttonSeven2.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven2.setText("Guardar");
@@ -149,10 +161,29 @@ public class agregarFabricante extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 Fabricante fabricante= new Fabricante();
+String [] tipos={"Fijo","Celular"};
     private void buttonSeven2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven2ActionPerformed
         // TODO add your handling code here:
-        fabricante.insertar(jTextField4.getText(), jTextField3.getText(),jTextField7.getText(), jComboBox1.getSelectedIndex());
+        if(("".equals(jTextField4.getText())|"".equals(jTextField3.getText()))|"".equals(jTextField7.getText())){
+                    JOptionPane.showMessageDialog(this, "Ingrese correctamente los datos","Advertencia",JOptionPane.WARNING_MESSAGE);
+
+        }
+        else{
+        fabricante.insertar(jTextField4.getText(), jTextField3.getText(),jTextField7.getText(), jComboBox1.getSelectedIndex()+1);
+        jTextField4.setText(null);
+        jTextField3.setText(null);
+        jTextField7.setText(null);
+        }
     }//GEN-LAST:event_buttonSeven2ActionPerformed
+
+    private void buttonSeven1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_buttonSeven1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

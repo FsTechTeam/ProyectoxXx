@@ -18,10 +18,10 @@ public class Fabricante {
     * metodo para ingresar un cliente 
     * @param Nombre
     * @param Direccion
-    * @param Contacto
+    * @param Telefono
     * @param TipoTelefono
     */
-        public void insertar(String Nombre,String Direccion,String Contacto,int TipoTelefono) {
+        public void insertar(String Nombre,String Direccion,String Telefono,int TipoTelefono) {
 
     
         Conexion cone= new Conexion();
@@ -33,7 +33,7 @@ public class Fabricante {
          try
         {
             Statement statement=(Statement) conect.createStatement();                    
-            statement.execute("INSERT INTO Fabricante (Nombre,Direccion,Contacto,Tipo_Telefono_id) VALUES('"+Nombre+"','"+Direccion+"','"+Contacto+"','"+TipoTelefono+"')");             
+            statement.execute("INSERT INTO Fabricante (Nombre,Direccion,Telefono,Tipo_Telefono_id) VALUES('"+Nombre+"','"+Direccion+"','"+Telefono+"','"+TipoTelefono+"')");             
             System.out.println("Datos ingresados correctamente");          
             statement.close();
             conect.close();
