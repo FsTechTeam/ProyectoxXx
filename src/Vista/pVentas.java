@@ -4,11 +4,22 @@
  */
 package Vista;
 
+import Controlador.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Geek
  */
 public class pVentas extends javax.swing.JPanel {
+    
+    String nuevoClienteNombre, nuevoClienteApellido;
 
     /**
      * Creates new form pVentas
@@ -76,7 +87,6 @@ public class pVentas extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(1002, 734));
         setMinimumSize(new java.awt.Dimension(1002, 734));
-        setSize(new java.awt.Dimension(1002, 734));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -97,6 +107,12 @@ public class pVentas extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Datos Cliente:");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(244, 244, 244));
 
@@ -275,6 +291,11 @@ public class pVentas extends javax.swing.JPanel {
         buttonSeven3.setBackground(new java.awt.Color(0, 204, 0));
         buttonSeven3.setText("+ Agregar cliente nuevo");
         buttonSeven3.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        buttonSeven3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSeven3ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setText("2406001");
 
@@ -465,6 +486,32 @@ public class pVentas extends javax.swing.JPanel {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void buttonSeven3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSeven3ActionPerformed
+        // TODO add your handling code here:
+        if(jTextField1.getText().isEmpty() || jTextField4.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Campos vacios");
+        }else{
+            nuevoClienteNombre = jTextField1.getText();
+            nuevoClienteApellido = jTextField4.getText();
+            Conexion conexion = new Conexion();
+            Connection connection = conexion.getconexion();
+            try {
+                String sql = "INSERT into Cliente (Nombre, Apellido) values(?, ?)";
+                PreparedStatement prepstatement = connection.prepareStatement(sql);
+                prepstatement.setString(1, nuevoClienteNombre);
+                prepstatement.setString(2, nuevoClienteApellido);
+                prepstatement.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Cliente Agregado con Exito");
+            } catch (SQLException ex) {
+                Logger.getLogger(pVentas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_buttonSeven3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonSeven buttonSeven3;
